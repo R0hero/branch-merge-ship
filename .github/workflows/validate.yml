@@ -1,0 +1,65 @@
+name: Validate Java Files
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-calculator:
+    name: "✅ Calculator"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compile Calculator
+        run: javac src/Calculator.java
+
+      - name: Validate Calculator output
+        run: |
+          OUTPUT=$(java -cp src Calculator)
+          echo "$OUTPUT"
+
+          echo "$OUTPUT" | grep -q "add(2, 3) = 5" || { echo "❌ add() failed"; exit 1; }
+          echo "$OUTPUT" | grep -q "subtract(10, 3) = 7" || { echo "❌ subtract() failed"; exit 1; }
+
+          echo "✅ Calculator: all checks passed"
+
+  validate-greeting:
+    name: "✅ Greeting"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compile Greeting
+        run: javac src/Greeting.java
+
+      - name: Validate Greeting output
+        run: |
+          OUTPUT=$(java -cp src Greeting)
+          echo "$OUTPUT"
+
+          echo "$OUTPUT" | grep -q "Hello, World!" || { echo "❌ greet() returned wrong message"; exit 1; }
+
+          echo "✅ Greeting: all checks passed"
+
+  validate-weather:
+    name: "✅ Weather"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compile Weather
+        run: javac src/Weather.java
+
+      - name: Validate Weather output
+        run: |
+          OUTPUT=$(java -cp src Weather)
+          echo "$OUTPUT"
+
+          echo "$OUTPUT" | grep -q "35C is Hot"  || { echo "❌ 35C should be Hot"; exit 1; }
+          echo "$OUTPUT" | grep -q "5C is Cold"  || { echo "❌ 5C should be Cold"; exit 1; }
+          echo "$OUTPUT" | grep -q "20C is Mild" || { echo "❌ 20C should be Mild"; exit 1; }
+
+          echo "✅ Weather: all checks passed"
