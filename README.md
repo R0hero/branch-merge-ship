@@ -6,15 +6,15 @@ https://www.javapro.academy/free-git-github-course/git-fundamentals/installing-a
 
 #### What Is This?
 
-This repo contains three Java files, each with an intentional bug. As you work through the course, you'll fork this repo, fix the bugs one at a time, and open pull requests. CI validates every fix automatically.
+This repo contains three Java files, each with an intentional bug, which now has been corrected.
 
 #### The Bugs
 
-| File | What's Wrong | CI Check |
+| File | What Was Wrong | CI Check |
 |------|-------------|----------|
-| src/Calculator.java | subtract() adds instead of subtracting | ❌ Failing |
-| src/Greeting.java | greet() says "Goodbye" instead of "Hello" | ❌ Failing |
-| src/Weather.java | Hot and Cold labels are swapped | ❌ Failing |
+| src/Calculator.java | subtract() adds instead of subtracting | :check: Failing |
+| src/Greeting.java | greet() says "Goodbye" instead of "Hello" | :check: Failing |
+| src/Weather.java | Hot and Cold labels are swapped | :check: Failing |
 
 #### Getting Started
 
@@ -34,4 +34,4 @@ This repo contains three Java files, each with an intentional bug. As you work t
 
 #### License
 
-MIT — see LICENSE file for details.# test
+MIT — see LICENSE file for details.
